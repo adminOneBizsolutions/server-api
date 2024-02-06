@@ -1,5 +1,3 @@
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-
 const express = require('express');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
@@ -27,7 +25,9 @@ mongoose.set('strictQuery', false)
 let db = mongoose.connection
 db.once('open', () => console.log('Connected to MongoDB!'))
 
-app.use(cors())
+app.use(cors({
+  origin: 'https://bizsolutions-gamma.vercel.app'
+}));
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
